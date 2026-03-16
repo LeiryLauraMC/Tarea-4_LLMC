@@ -1,9 +1,14 @@
+import streamlit as st
+
+st.set_page_config(layout="wide", page_title="HAR Dashboard")
+
+html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>HAR — Human Activity Recognition</title>
+<title>HAR - Human Activity Recognition</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -135,7 +140,7 @@
       <!-- Soft background glow -->
       <circle cx="370" cy="160" r="200" fill="rgba(181,136,106,0.07)"/>
 
-      <!-- ── FIGURE WALKING (right side) ── -->
+      <!-- -- FIGURE WALKING (right side) -- -->
       <!-- Head -->
       <circle cx="390" cy="60" r="16" stroke="rgba(181,136,106,0.45)" stroke-width="2" fill="rgba(181,136,106,0.08)"/>
       <!-- Body -->
@@ -151,14 +156,14 @@
       <line x1="390" y1="130" x2="410" y2="162" stroke="rgba(181,136,106,0.30)" stroke-width="2.5" stroke-linecap="round"/>
       <line x1="410" y1="162" x2="420" y2="195" stroke="rgba(181,136,106,0.25)" stroke-width="2" stroke-linecap="round"/>
 
-      <!-- ── SMARTPHONE (held by figure, left hand) ── -->
+      <!-- -- SMARTPHONE (held by figure, left hand) -- -->
       <rect x="330" y="108" width="24" height="38" rx="4" stroke="rgba(143,173,168,0.55)" stroke-width="1.8" fill="rgba(143,173,168,0.10)"/>
       <!-- Screen -->
       <rect x="333" y="113" width="18" height="24" rx="2" fill="rgba(143,173,168,0.15)" stroke="rgba(143,173,168,0.30)" stroke-width="0.8"/>
       <!-- Home button -->
       <circle cx="342" cy="141" r="2" fill="rgba(143,173,168,0.40)"/>
 
-      <!-- ── SENSOR SIGNAL WAVES from phone ── -->
+      <!-- -- SENSOR SIGNAL WAVES from phone -- -->
       <!-- X axis signal -->
       <path d="M 260 145 L 275 145 Q 278 138 281 145 Q 284 152 287 145 Q 290 138 293 145 L 308 145"
             stroke="rgba(181,136,106,0.55)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
@@ -173,7 +178,7 @@
       <text x="248" y="163" font-size="8" fill="rgba(143,173,168,0.55)" font-family="DM Sans, sans-serif" font-weight="500">Y</text>
       <text x="248" y="178" font-size="8" fill="rgba(196,168,130,0.55)" font-family="DM Sans, sans-serif" font-weight="500">Z</text>
 
-      <!-- ── ACTIVITY LABELS (small floating tags) ── -->
+      <!-- -- ACTIVITY LABELS (small floating tags) -- -->
       <rect x="230" y="48" width="72" height="18" rx="9" fill="rgba(181,136,106,0.12)" stroke="rgba(181,136,106,0.25)" stroke-width="1"/>
       <text x="266" y="60" font-size="8" fill="rgba(181,136,106,0.70)" font-family="DM Sans, sans-serif" font-weight="500" text-anchor="middle">WALKING</text>
 
@@ -183,7 +188,7 @@
       <rect x="380" y="220" width="60" height="18" rx="9" fill="rgba(196,168,130,0.12)" stroke="rgba(196,168,130,0.25)" stroke-width="1"/>
       <text x="410" y="232" font-size="8" fill="rgba(196,168,130,0.75)" font-family="DM Sans, sans-serif" font-weight="500" text-anchor="middle">LAYING</text>
 
-      <!-- ── DOT GRID (data motif bottom right) ── -->
+      <!-- -- DOT GRID (data motif bottom right) -- -->
       <circle cx="420" cy="270" r="2.2" fill="rgba(181,136,106,0.22)"/>
       <circle cx="435" cy="270" r="2.2" fill="rgba(181,136,106,0.18)"/>
       <circle cx="450" cy="270" r="2.2" fill="rgba(181,136,106,0.14)"/>
@@ -200,7 +205,7 @@
   </div>
   <div class="hero-tag">University of California, Irvine</div>
   <h1>Human Activity<br>Recognition</h1>
-  <p>El dataset que elegí es "Human Activity Recognition (HAR)", que contiene registros de los sensores de un celular usado por 30 personas mientras hacían 6 actividades del día a día: caminar, subir y bajar escaleras, sentarse, pararse y acostarse. A partir de esas señales se calcularon 561 variables que describen cómo se movió cada persona.</p>
+  <p>El dataset que elegi es "Human Activity Recognition (HAR)", que contiene registros de los sensores de un celular usado por 30 personas mientras hacian 6 actividades del dia a dia: caminar, subir y bajar escaleras, sentarse, pararse y acostarse. A partir de esas senales se calcularon 561 variables que describen como se movio cada persona.</p>
   <div class="hero-stats">
     <div class="hero-stat"><span>10,299</span><span>Muestras totales</span></div>
     <div class="hero-stat"><span>561</span><span>Variables</span></div>
@@ -210,32 +215,32 @@
 </div>
 
 <nav class="nav">
-  <button class="nav-btn active" onclick="showSection('eda',this)">EDA — QUEST</button>
-  <button class="nav-btn" onclick="showSection('modelos',this)">Clasificación</button>
-  <button class="nav-btn" onclick="showSection('comparacion',this)">Comparación</button>
+  <button class="nav-btn active" onclick="showSection('eda',this)">EDA - QUEST</button>
+  <button class="nav-btn" onclick="showSection('modelos',this)">Clasificacion</button>
+  <button class="nav-btn" onclick="showSection('comparacion',this)">Comparacion</button>
 </nav>
 
-<!-- ══════════ EDA ══════════ -->
+<!--  EDA  -->
 <div class="section active" id="eda">
-  <div class="section-title">EDA — QUEST</div>
-  <div class="section-sub">Exploración de los datos para comprender el contexto y cómo se comportan las variables.</div>
+  <div class="section-title">EDA - QUEST</div>
+  <div class="section-sub">Exploracion de los datos para comprender el contexto y como se comportan las variables.</div>
 
   <!-- Q -->
   <div class="mb">
-    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);font-weight:500;margin-bottom:16px">Q — Questions</div>
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);font-weight:500;margin-bottom:16px">Q - Questions</div>
     <div class="grid-3" style="gap:16px">
-      <div class="card"><div class="card-title">Q1</div><p>¿El dataset está balanceado? (las 6 actividades)</p></div>
-      <div class="card"><div class="card-title">Q2</div><p>¿Existen valores faltantes o anómalos en las variables?</p></div>
-      <div class="card"><div class="card-title">Q3</div><p>Caracteriza estadísticamente las variables (rango, distribución, simetría)</p></div>
-      <div class="card"><div class="card-title">Q4</div><p>¿Existen variables que permitan separar actividades dinámicas (caminar) de estáticas (sentado, de pie, acostado)?</p></div>
-      <div class="card"><div class="card-title">Q5</div><p>¿Qué variables tienen mayor influencia para distinguir las 6 clases?</p></div>
-      <div class="card"><div class="card-title">Q6</div><p>¿Existen grupos naturales de actividades visibles en los datos (sin usar etiquetas)?</p></div>
+      <div class="card"><div class="card-title">Q1</div><p>El dataset esta balanceado? (las 6 actividades)</p></div>
+      <div class="card"><div class="card-title">Q2</div><p>Existen valores faltantes o anomalos en las variables?</p></div>
+      <div class="card"><div class="card-title">Q3</div><p>Caracteriza estadisticamente las variables (rango, distribucion, simetria)</p></div>
+      <div class="card"><div class="card-title">Q4</div><p>Existen variables que permitan separar actividades dinamicas (caminar) de estaticas (sentado, de pie, acostado)?</p></div>
+      <div class="card"><div class="card-title">Q5</div><p>Que variables tienen mayor influencia para distinguir las 6 clases?</p></div>
+      <div class="card"><div class="card-title">Q6</div><p>Existen grupos naturales de actividades visibles en los datos (sin usar etiquetas)?</p></div>
     </div>
   </div>
 
   <!-- U -->
   <div class="card mb">
-    <div class="card-title">U — Understand</div>
+    <div class="card-title">U - Understand</div>
     <div class="grid-4" style="margin-bottom:20px">
       <div class="metric-card"><div class="metric-value">7,352</div><div class="metric-label">Muestras Train</div></div>
       <div class="metric-card"><div class="metric-value">2,947</div><div class="metric-label">Muestras Test</div></div>
@@ -244,56 +249,56 @@
     </div>
     <div class="grid-2">
       <div>
-        <div class="chart-sub">Distribución de actividades — Training set</div>
+        <div class="chart-sub">Distribucion de actividades - Training set</div>
         <canvas id="distChart" height="210"></canvas>
-        <p style="margin-top:12px">Las 6 clases tienen una distribución relativamente equilibrada, con proporciones entre el 13% y el 19%. No se observa un desbalanceo que pueda sesgar los modelos de clasificación.</p>
+        <p style="margin-top:12px">Las 6 clases tienen una distribucion relativamente equilibrada, con proporciones entre el 13% y el 19%. No se observa un desbalanceo que pueda sesgar los modelos de clasificacion.</p>
       </div>
       <div>
-        <div class="chart-sub">Proporción por clase</div>
+        <div class="chart-sub">Proporcion por clase</div>
         <div class="donut-wrap">
           <canvas id="donutChart" class="donut-canvas"></canvas>
           <div class="donut-legend" id="donutLegend"></div>
         </div>
-        <p style="margin-top:12px">Todas las variables están normalizadas en el rango [-1, 1].</p>
+        <p style="margin-top:12px">Todas las variables estan normalizadas en el rango [-1, 1].</p>
       </div>
     </div>
   </div>
 
   <!-- E -->
   <div class="card mb">
-    <div class="card-title">E — Explore</div>
-    <p style="margin-bottom:20px">La mayoría de las variables muestran distribuciones bimodales o asimétricas, lo que sugiere que los datos de actividades dinámicas y estáticas forman dos grupos naturalmente separados.</p>
-    <div class="chart-sub" style="margin-bottom:16px">Distribución de variables representativas</div>
+    <div class="card-title">E - Explore</div>
+    <p style="margin-bottom:20px">La mayoria de las variables muestran distribuciones bimodales o asimetricas, lo que sugiere que los datos de actividades dinamicas y estaticas forman dos grupos naturalmente separados.</p>
+    <div class="chart-sub" style="margin-bottom:16px">Distribucion de variables representativas</div>
     <div class="grid-3" style="margin-bottom:28px">
-      <div><div class="chart-sub">Aceleración corporal X (tiempo)</div><canvas id="histX" height="180"></canvas></div>
-      <div><div class="chart-sub">Aceleración corporal Y (tiempo)</div><canvas id="histY" height="180"></canvas></div>
-      <div><div class="chart-sub">Aceleración corporal Z (tiempo)</div><canvas id="histZ" height="180"></canvas></div>
-      <div><div class="chart-sub">Aceleración gravedad X (tiempo)</div><canvas id="histGX" height="180"></canvas></div>
-      <div><div class="chart-sub">Aceleración gravedad Y (tiempo)</div><canvas id="histGY" height="180"></canvas></div>
-      <div><div class="chart-sub">Aceleración gravedad Z (tiempo)</div><canvas id="histGZ" height="180"></canvas></div>
+      <div><div class="chart-sub">Aceleracion corporal X (tiempo)</div><canvas id="histX" height="180"></canvas></div>
+      <div><div class="chart-sub">Aceleracion corporal Y (tiempo)</div><canvas id="histY" height="180"></canvas></div>
+      <div><div class="chart-sub">Aceleracion corporal Z (tiempo)</div><canvas id="histZ" height="180"></canvas></div>
+      <div><div class="chart-sub">Aceleracion gravedad X (tiempo)</div><canvas id="histGX" height="180"></canvas></div>
+      <div><div class="chart-sub">Aceleracion gravedad Y (tiempo)</div><canvas id="histGY" height="180"></canvas></div>
+      <div><div class="chart-sub">Aceleracion gravedad Z (tiempo)</div><canvas id="histGZ" height="180"></canvas></div>
     </div>
-    <p style="margin-bottom:20px">Se evidencia una separación entre actividades dinámicas (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS) y estáticas (SITTING, STANDING, LAYING) en las variables de aceleración corporal. Sin embargo, dentro de cada grupo se muestra una separación menor entre sí.</p>
-    <div class="chart-sub" style="margin-bottom:16px">Distribución por actividad — variables representativas</div>
+    <p style="margin-bottom:20px">Se evidencia una separacion entre actividades dinamicas (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS) y estaticas (SITTING, STANDING, LAYING) en las variables de aceleracion corporal. Sin embargo, dentro de cada grupo se muestra una separacion menor entre si.</p>
+    <div class="chart-sub" style="margin-bottom:16px">Distribucion por actividad - variables representativas</div>
     <div class="grid-3">
-      <div><div class="chart-sub">Aceleración corporal X</div><canvas id="boxX" height="200"></canvas></div>
-      <div><div class="chart-sub">Aceleración corporal Y</div><canvas id="boxY" height="200"></canvas></div>
-      <div><div class="chart-sub">Aceleración corporal Z</div><canvas id="boxZ" height="200"></canvas></div>
-      <div><div class="chart-sub">Aceleración gravedad X</div><canvas id="boxGX" height="200"></canvas></div>
-      <div><div class="chart-sub">Aceleración gravedad Y</div><canvas id="boxGY" height="200"></canvas></div>
-      <div><div class="chart-sub">Aceleración gravedad Z</div><canvas id="boxGZ" height="200"></canvas></div>
+      <div><div class="chart-sub">Aceleracion corporal X</div><canvas id="boxX" height="200"></canvas></div>
+      <div><div class="chart-sub">Aceleracion corporal Y</div><canvas id="boxY" height="200"></canvas></div>
+      <div><div class="chart-sub">Aceleracion corporal Z</div><canvas id="boxZ" height="200"></canvas></div>
+      <div><div class="chart-sub">Aceleracion gravedad X</div><canvas id="boxGX" height="200"></canvas></div>
+      <div><div class="chart-sub">Aceleracion gravedad Y</div><canvas id="boxGY" height="200"></canvas></div>
+      <div><div class="chart-sub">Aceleracion gravedad Z</div><canvas id="boxGZ" height="200"></canvas></div>
     </div>
   </div>
 
   <!-- S -->
   <div class="card mb">
-    <div class="card-title">S — Study</div>
-    <p style="margin-bottom:20px">Se observa alta correlación positiva entre las componentes de aceleración corporal en los tres ejes.</p>
-    <p style="margin-bottom:20px">Las variables más influyentes provienen principalmente del dominio de frecuencia "fBody" y de la magnitud de la aceleración corporal. En este sentido, la forma del movimiento periódico (caminar vs estar quieto) es lo que mejor distingue las actividades.</p>
-    <p style="margin-bottom:24px">En la gráfica de separación se evidencia una división entre las actividades dinámicas y las estáticas. Sin embargo, SITTING, STANDING y LAYING se solapan entre sí, lo que hace que dividirlas o identificarlas sea más complicado.</p>
+    <div class="card-title">S - Study</div>
+    <p style="margin-bottom:20px">Se observa alta correlacion positiva entre las componentes de aceleracion corporal en los tres ejes.</p>
+    <p style="margin-bottom:20px">Las variables mas influyentes provienen principalmente del dominio de frecuencia "fBody" y de la magnitud de la aceleracion corporal. En este sentido, la forma del movimiento periodico (caminar vs estar quieto) es lo que mejor distingue las actividades.</p>
+    <p style="margin-bottom:24px">En la grafica de separacion se evidencia una division entre las actividades dinamicas y las estaticas. Sin embargo, SITTING, STANDING y LAYING se solapan entre si, lo que hace que dividirlas o identificarlas sea mas complicado.</p>
 
     <div class="grid-2" style="margin-bottom:24px">
       <div>
-        <div class="chart-sub">Correlación entre variables representativas</div>
+        <div class="chart-sub">Correlacion entre variables representativas</div>
         <div class="corr-wrap" id="corrHeatmap"></div>
       </div>
       <div>
@@ -304,17 +309,17 @@
 
     <div class="grid-2">
       <div>
-        <div class="chart-sub">Actividades separadas — top 2 variables</div>
+        <div class="chart-sub">Actividades separadas - top 2 variables</div>
         <canvas id="scatterChart" height="260"></canvas>
       </div>
       <div>
-        <div class="chart-sub">Reducción de dimensionalidad — PC1 vs PC2</div>
+        <div class="chart-sub">Reduccion de dimensionalidad - PC1 vs PC2</div>
         <canvas id="pcaChart" height="260"></canvas>
       </div>
     </div>
 
     <div style="margin-top:24px">
-      <div class="chart-sub" style="margin-bottom:16px">Distribución por actividad — top 3 variables</div>
+      <div class="chart-sub" style="margin-bottom:16px">Distribucion por actividad - top 3 variables</div>
       <div class="grid-3">
         <div><div class="chart-sub">fBodyAccJerk-entropy()-X</div><canvas id="topHist1" height="180"></canvas></div>
         <div><div class="chart-sub">fBodyAccJerk-entropy()-Y</div><canvas id="topHist2" height="180"></canvas></div>
@@ -325,27 +330,27 @@
 
   <!-- T -->
   <div>
-    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);font-weight:500;margin-bottom:16px">T — Tell</div>
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);font-weight:500;margin-bottom:16px">T - Tell</div>
     <div class="grid-3" style="gap:16px">
-      <div class="card"><div class="card-title">Q1</div><p>Sí. Las 6 clases tienen entre 13% y 19% de representación.</p></div>
-      <div class="card"><div class="card-title">Q2</div><p>No. El dataset está completo y todas las variables están normalizadas en [-1, 1].</p></div>
-      <div class="card"><div class="card-title">Q3</div><p>Distribuciones bimodales o asimétricas, consistentes con la separación entre actividades dinámicas y estáticas.</p></div>
-      <div class="card"><div class="card-title">Q4</div><p>Sí. Las variables de aceleración corporal separan claramente ambos grupos con solo visualizar su distribución.</p></div>
-      <div class="card"><div class="card-title">Q5</div><p>Las variables relacionadas con la frecuencia "fBody" y las de aceleración.</p></div>
-      <div class="card"><div class="card-title">Q6</div><p>Sí. La reducción de dimensionalidad muestra dos grandes grupos (dinámicas y estáticas).</p></div>
+      <div class="card"><div class="card-title">Q1</div><p>Si. Las 6 clases tienen entre 13% y 19% de representacion.</p></div>
+      <div class="card"><div class="card-title">Q2</div><p>No. El dataset esta completo y todas las variables estan normalizadas en [-1, 1].</p></div>
+      <div class="card"><div class="card-title">Q3</div><p>Distribuciones bimodales o asimetricas, consistentes con la separacion entre actividades dinamicas y estaticas.</p></div>
+      <div class="card"><div class="card-title">Q4</div><p>Si. Las variables de aceleracion corporal separan claramente ambos grupos con solo visualizar su distribucion.</p></div>
+      <div class="card"><div class="card-title">Q5</div><p>Las variables relacionadas con la frecuencia "fBody" y las de aceleracion.</p></div>
+      <div class="card"><div class="card-title">Q6</div><p>Si. La reduccion de dimensionalidad muestra dos grandes grupos (dinamicas y estaticas).</p></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ CLASIFICACIÓN ══════════ -->
+<!--  CLASIFICACIN  -->
 <div class="section" id="modelos">
-  <div class="section-title">Clasificación Multiclase</div>
+  <div class="section-title">Clasificacion Multiclase</div>
   <div class="section-sub">Tres modelos para clasificar la actividad que estaba haciendo cada persona incluida en el estudio.</div>
 
   <div class="model-selector" id="modelSelector">
-    <button class="model-btn active" onclick="selectModel('SGD',this)">Modelo 1 — SGDClassifier</button>
-    <button class="model-btn" onclick="selectModel('RF',this)">Modelo 2 — Random Forest</button>
-    <button class="model-btn" onclick="selectModel('SVM',this)">Modelo 3 — SVM</button>
+    <button class="model-btn active" onclick="selectModel('SGD',this)">Modelo 1 - SGDClassifier</button>
+    <button class="model-btn" onclick="selectModel('RF',this)">Modelo 2 - Random Forest</button>
+    <button class="model-btn" onclick="selectModel('SVM',this)">Modelo 3 - SVM</button>
   </div>
   <div class="model-selector">
     <button class="model-btn active" id="absBtn" onclick="selectCMType('abs',this)">Valores absolutos</button>
@@ -354,7 +359,7 @@
 
   <div class="grid-2" style="margin-bottom:24px">
     <div class="card">
-      <div class="card-title" id="cmTitle">Modelo 1 — SGD · Matriz de confusión</div>
+      <div class="card-title" id="cmTitle">Modelo 1 - SGD  Matriz de confusion</div>
       <div class="heatmap-wrap"><table class="heatmap-table" id="cmTable"></table></div>
     </div>
     <div class="card">
@@ -368,9 +373,9 @@
   </div>
 </div>
 
-<!-- ══════════ COMPARACIÓN ══════════ -->
+<!--  COMPARACIN  -->
 <div class="section" id="comparacion">
-  <div class="section-title">Comparación de Modelos</div>
+  <div class="section-title">Comparacion de Modelos</div>
   <div class="section-sub">Los tres modelos logran clasificar las 6 actividades con accuracy superior al 90%.</div>
 
   <div class="grid-4" style="margin-bottom:24px">
@@ -382,7 +387,7 @@
 
   <div class="grid-2" style="margin-bottom:24px">
     <div class="card">
-      <div class="card-title">Métricas comparativas</div>
+      <div class="card-title">Metricas comparativas</div>
       <canvas id="compChart" height="260"></canvas>
     </div>
     <div class="card">
@@ -390,34 +395,34 @@
       <table class="results-table">
         <thead><tr><th>Modelo</th><th>Acc. CV</th><th>Acc. Test</th><th>F1 macro</th><th>AUC</th><th>Escalado</th></tr></thead>
         <tbody>
-          <tr><td>SGD</td><td>0.9276</td><td>0.9386</td><td>0.9387</td><td>0.9918</td><td><span class="badge badge-si">Sí</span></td></tr>
+          <tr><td>SGD</td><td>0.9276</td><td>0.9386</td><td>0.9387</td><td>0.9918</td><td><span class="badge badge-si">Si</span></td></tr>
           <tr><td>Random Forest</td><td>0.9101</td><td>0.9257</td><td>0.9241</td><td>0.9952</td><td><span class="badge badge-no">No</span></td></tr>
-          <tr><td>SVM (RBF)</td><td class="best">0.9259</td><td class="best">0.9522</td><td class="best">0.9515</td><td class="best">0.9977</td><td><span class="badge badge-si">Sí</span></td></tr>
+          <tr><td>SVM (RBF)</td><td class="best">0.9259</td><td class="best">0.9522</td><td class="best">0.9515</td><td class="best">0.9977</td><td><span class="badge badge-si">Si</span></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">Conclusión</div>
+    <div class="card-title">Conclusion</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
-      <div><div class="card-title" style="margin-bottom:10px">SGDClassifier</div><p>Es el más rápido pero el menos preciso. Es importante resaltar que este modelo tiene dificultades para clasificar actividades estáticas similares como SITTING y STANDING.</p></div>
-      <div><div class="card-title" style="margin-bottom:10px">Random Forest</div><p>Tiene una buena precisión, y su rasgo más importante a tener en cuenta es que permite identificar las variables más importantes.</p></div>
-      <div><div class="card-title" style="color:var(--accent);margin-bottom:10px">SVM — Mejor modelo</div><p>Es el modelo más preciso de los tres evaluados e incluso logra separar las clases que tienen similitud entre sí.</p></div>
+      <div><div class="card-title" style="margin-bottom:10px">SGDClassifier</div><p>Es el mas rapido pero el menos preciso. Es importante resaltar que este modelo tiene dificultades para clasificar actividades estaticas similares como SITTING y STANDING.</p></div>
+      <div><div class="card-title" style="margin-bottom:10px">Random Forest</div><p>Tiene una buena precision, y su rasgo mas importante a tener en cuenta es que permite identificar las variables mas importantes.</p></div>
+      <div><div class="card-title" style="color:var(--accent);margin-bottom:10px">SVM - Mejor modelo</div><p>Es el modelo mas preciso de los tres evaluados e incluso logra separar las clases que tienen similitud entre si.</p></div>
     </div>
   </div>
 </div>
 
-<div class="footer">UCI HAR Dataset · Universidad de California Irvine · Análisis con Python & Scikit-Learn</div>
+<div class="footer">UCI HAR Dataset  Universidad de California Irvine  Analisis con Python & Scikit-Learn</div>
 
 <script>
-// ── PALETTE ──────────────────────────────────────────────────────────────────
+// -- PALETTE ------------------------------------------------------------------
 const NUDE  = ['#b5886a','#8fada8','#c4a882','#9b7e6a','#7a9e99','#d4b896'];
 const ACTIVITIES = ['WALKING','WALKING_UPSTAIRS','WALKING_DOWNSTAIRS','SITTING','STANDING','LAYING'];
 const ACT_S = ['Walk','Walk Up','Walk Down','Sitting','Standing','Laying'];
 const DIST  = [1226,1073,986,1286,1374,1407];
 
-// ── DATA ─────────────────────────────────────────────────────────────────────
+// -- DATA ---------------------------------------------------------------------
 // Histogram data (approximate from notebook charts)
 const HIST_DATA = {
   bodyX:  { bins: [-1.0,-0.8,-0.6,-0.4,-0.2,0.0,0.2,0.4,0.6,0.8,1.0], counts: [0,0,0,0,0,80,920,870,160,130,100] },
@@ -528,15 +533,15 @@ const CLASS_F1 = {
 };
 const MODEL_NOTES = {
   SGD:'El SGD logra una accuracy razonable pero presenta confusiones entre SITTING y STANDING.',
-  RF: 'Random Forest mejora respecto al SGD, ya que reduce las confusiones entre SITTING y STANDING. Por otro lado, las variables más importantes que identifica coinciden con las mostradas en el EDA.',
+  RF: 'Random Forest mejora respecto al SGD, ya que reduce las confusiones entre SITTING y STANDING. Por otro lado, las variables mas importantes que identifica coinciden con las mostradas en el EDA.',
   SVM:'SVM es el modelo que mejor se comporta de los tres analizados.',
 };
-const MODEL_NAMES = { SGD:'Modelo 1 — SGD', RF:'Modelo 2 — Random Forest', SVM:'Modelo 3 — SVM' };
+const MODEL_NAMES = { SGD:'Modelo 1 - SGD', RF:'Modelo 2 - Random Forest', SVM:'Modelo 3 - SVM' };
 
 let currentModel = 'SGD';
 let currentCMType = 'abs';
 
-// ── NAV ───────────────────────────────────────────────────────────────────────
+// -- NAV -----------------------------------------------------------------------
 function showSection(id, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -545,7 +550,7 @@ function showSection(id, btn) {
   if (id === 'modelos') { renderCM(); renderReportBars(); }
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
+// -- HELPERS -------------------------------------------------------------------
 function cwColor(v, isNorm) {
   if (isNorm) {
     const t = Math.min(v,0.5)/0.5;
@@ -560,7 +565,7 @@ function cwColor(v, isNorm) {
   return `rgb(${Math.round(201-t*21)},${Math.round(200-t*170)},${Math.round(180-t*142)})`;
 }
 function textColor(bg) {
-  const m = bg.match(/\d+/g);
+  const m = bg.match(/\\d+/g);
   return (0.299*m[0]+0.587*m[1]+0.114*m[2]) > 140 ? '#2c2620' : '#fff';
 }
 
@@ -578,11 +583,11 @@ function corrColor(v) {
 function corrText(v) {
   if (v === null) return '';
   const bg = corrColor(v);
-  const m = bg.match(/\d+/g);
+  const m = bg.match(/\\d+/g);
   return (0.299*m[0]+0.587*m[1]+0.114*m[2]) > 160 ? '#2c2620' : '#fff';
 }
 
-// ── HIST UTIL ─────────────────────────────────────────────────────────────────
+// -- HIST UTIL -----------------------------------------------------------------
 function makeHist(canvasId, data, mean, median) {
   const labels = data.bins.slice(0,-1).map((b,i) => ((b+data.bins[i+1])/2).toFixed(2));
   new Chart(document.getElementById(canvasId), {
@@ -612,7 +617,7 @@ function makeHist(canvasId, data, mean, median) {
   });
 }
 
-// ── BOXPLOT (simulated with bar chart) ────────────────────────────────────────
+// -- BOXPLOT (simulated with bar chart) ----------------------------------------
 function makeBoxplot(canvasId, key) {
   const medians = BOX_MEDIANS[key];
   const q1s = BOX_Q1[key];
@@ -622,7 +627,7 @@ function makeBoxplot(canvasId, key) {
     data: {
       labels: ACT_S,
       datasets: [
-        { label: 'Q1→Q3', data: q3s.map((q3,i) => q3-q1s[i]), backgroundColor: NUDE.map(c => c+'bb'), borderColor: NUDE, borderWidth: 1.5, borderRadius: 3, base: q1s },
+        { label: 'Q1Q3', data: q3s.map((q3,i) => q3-q1s[i]), backgroundColor: NUDE.map(c => c+'bb'), borderColor: NUDE, borderWidth: 1.5, borderRadius: 3, base: q1s },
         { label: 'Mediana', data: medians, type: 'scatter', pointStyle: 'line', pointRotation: 90, pointRadius: 10, borderColor: '#2c2620', borderWidth: 2 }
       ]
     },
@@ -637,7 +642,7 @@ function makeBoxplot(canvasId, key) {
   });
 }
 
-// ── TOP HIST PER ACTIVITY ────────────────────────────────────────────────────
+// -- TOP HIST PER ACTIVITY ----------------------------------------------------
 function makeTopHist(canvasId, hkey) {
   const d = TOP3_DATA[hkey];
   const datasets = ACTIVITIES.map((act, i) => ({
@@ -664,7 +669,7 @@ function makeTopHist(canvasId, hkey) {
   });
 }
 
-// ── CORRELATION HEATMAP ───────────────────────────────────────────────────────
+// -- CORRELATION HEATMAP -------------------------------------------------------
 function renderCorrHeatmap() {
   const n = CORR_VARS.length;
   let html = '<table class="corr-table"><thead><tr><th></th>';
@@ -689,7 +694,7 @@ function renderCorrHeatmap() {
   document.getElementById('corrHeatmap').innerHTML = html;
 }
 
-// ── CONFUSION MATRIX ──────────────────────────────────────────────────────────
+// -- CONFUSION MATRIX ----------------------------------------------------------
 function selectModel(m, btn) {
   currentModel = m;
   document.querySelectorAll('#modelSelector .model-btn').forEach(b => b.classList.remove('active'));
@@ -708,7 +713,7 @@ function renderCM() {
   const rowSums = cm.map(r => r.reduce((a,b)=>a+b,0));
   const data = isNorm ? cm.map((row,i) => row.map((v,j) => i===j?0:v/rowSums[i])) : cm;
   const fmt = v => isNorm ? v.toFixed(2) : v.toLocaleString();
-  document.getElementById('cmTitle').textContent = `${MODEL_NAMES[currentModel]} · Matriz${isNorm?' normalizada (solo errores)':' de confusión'}`;
+  document.getElementById('cmTitle').textContent = `${MODEL_NAMES[currentModel]}  Matriz${isNorm?' normalizada (solo errores)':' de confusion'}`;
   let html = '<thead><tr><th></th>';
   ACT_S.forEach(a => html += `<th style="text-align:center;font-size:9px">${a}</th>`);
   html += '</tr></thead><tbody>';
@@ -717,7 +722,7 @@ function renderCM() {
     row.forEach((v,j) => {
       const bg = (i===j&&!isNorm)?'#e8ddd4':cwColor(v,isNorm);
       const tc = textColor(bg);
-      html += `<td style="background:${bg};color:${tc}" title="${ACTIVITIES[i]} → ${ACTIVITIES[j]}: ${fmt(v)}">${fmt(v)}</td>`;
+      html += `<td style="background:${bg};color:${tc}" title="${ACTIVITIES[i]}  ${ACTIVITIES[j]}: ${fmt(v)}">${fmt(v)}</td>`;
     });
     html += '</tr>';
   });
@@ -735,9 +740,9 @@ function renderReportBars() {
 }
 renderCM(); renderReportBars();
 
-// ── RENDER EDA CHARTS ─────────────────────────────────────────────────────────
+// -- RENDER EDA CHARTS ---------------------------------------------------------
 
-// U — dist bar
+// U - dist bar
 new Chart(document.getElementById('distChart'), {
   type: 'bar',
   data: { labels: ACT_S, datasets: [{ data: DIST, backgroundColor: NUDE, borderRadius: 6, borderSkipped: false }] },
@@ -751,7 +756,7 @@ new Chart(document.getElementById('distChart'), {
   }
 });
 
-// U — donut
+// U - donut
 new Chart(document.getElementById('donutChart'), {
   type: 'doughnut',
   data: { labels: ACT_S, datasets: [{ data: DIST, backgroundColor: NUDE, borderWidth: 2, borderColor: '#faf7f4', hoverOffset: 8 }] },
@@ -759,10 +764,10 @@ new Chart(document.getElementById('donutChart'), {
 });
 const dl = document.getElementById('donutLegend');
 ACT_S.forEach((a,i) => {
-  dl.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${NUDE[i]}"></div><span>${ACTIVITIES[i]} — ${DIST[i].toLocaleString()}</span></div>`;
+  dl.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${NUDE[i]}"></div><span>${ACTIVITIES[i]} - ${DIST[i].toLocaleString()}</span></div>`;
 });
 
-// E — histograms
+// E - histograms
 makeHist('histX',  HIST_DATA.bodyX);
 makeHist('histY',  HIST_DATA.bodyY);
 makeHist('histZ',  HIST_DATA.bodyZ);
@@ -770,7 +775,7 @@ makeHist('histGX', HIST_DATA.gravX);
 makeHist('histGY', HIST_DATA.gravY);
 makeHist('histGZ', HIST_DATA.gravZ);
 
-// E — boxplots
+// E - boxplots
 makeBoxplot('boxX',  'bodyX');
 makeBoxplot('boxY',  'bodyY');
 makeBoxplot('boxZ',  'bodyZ');
@@ -778,21 +783,21 @@ makeBoxplot('boxGX', 'gravX');
 makeBoxplot('boxGY', 'gravY');
 makeBoxplot('boxGZ', 'gravZ');
 
-// S — correlation heatmap
+// S - correlation heatmap
 renderCorrHeatmap();
 
-// S — top variables bars
+// S - top variables bars
 const varWrap = document.getElementById('varBars');
 const varEntries = Object.entries(TOP10_VAR);
 const varMax = varEntries[0][1];
 varEntries.forEach(([name, val]) => {
   const pct = (val/varMax*100).toFixed(0);
-  const short = name.length > 28 ? name.slice(0,26)+'…' : name;
+  const short = name.length > 28 ? name.slice(0,26)+'...' : name;
   const hue = 20 + (1-val/varMax)*160;
   varWrap.innerHTML += `<div class="progress-row"><div class="progress-label" title="${name}">${short}</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pct}%;background:hsl(${hue},42%,58%)"></div></div><div class="progress-val">${val.toFixed(3)}</div></div>`;
 });
 
-// S — scatter
+// S - scatter
 const scatterDatasets = ACTIVITIES.map((act,i) => ({
   label: act, backgroundColor: NUDE[i]+'bb', pointRadius: 3, pointHoverRadius: 5,
   data: genScatter(SCATTER_CENTERS[i].cx, SCATTER_CENTERS[i].cy, 120, SCATTER_CENTERS[i].sp)
@@ -810,7 +815,7 @@ new Chart(document.getElementById('scatterChart'), {
   }
 });
 
-// S — PCA
+// S - PCA
 const pcaDatasets = ACTIVITIES.map((act,i) => ({
   label: act, backgroundColor: NUDE[i]+'bb', pointRadius: 3, pointHoverRadius: 5,
   data: genScatter(PCA_CENTERS[i].cx, PCA_CENTERS[i].cy, 150, PCA_CENTERS[i].sp)
@@ -828,7 +833,7 @@ new Chart(document.getElementById('pcaChart'), {
   }
 });
 
-// S — top 3 hists
+// S - top 3 hists
 makeTopHist('topHist1','h1');
 makeTopHist('topHist2','h2');
 makeTopHist('topHist3','h3');
@@ -856,3 +861,7 @@ new Chart(document.getElementById('compChart'), {
 </script>
 </body>
 </html>
+
+"""
+
+st.components.v1.html(html_content, height=5000, scrolling=True)
