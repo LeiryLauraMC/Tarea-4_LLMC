@@ -2,6 +2,14 @@ import streamlit as st
 
 st.set_page_config(layout="wide", page_title="HAR Dashboard")
 
+st.markdown("""
+    <style>
+        .main > div { padding: 0 !important; }
+        .block-container { padding: 0 !important; max-width: 100% !important; }
+        iframe { display: block; }
+    </style>
+""", unsafe_allow_html=True)
+
 html_content = """
 <!DOCTYPE html>
 <html lang="es">
