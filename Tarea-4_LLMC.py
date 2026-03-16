@@ -7,6 +7,12 @@ st.markdown("""
         .main > div { padding: 0 !important; }
         .block-container { padding: 0 !important; max-width: 100% !important; }
         iframe { display: block; }
+        header { visibility: hidden; }
+        #MainMenu { visibility: hidden; }
+        footer { visibility: hidden; }
+        [data-testid="stToolbar"] { display: none; }
+        [data-testid="stDecoration"] { display: none; }
+        [data-testid="stStatusWidget"] { display: none; }
     </style>
 """, unsafe_allow_html=True)
 
